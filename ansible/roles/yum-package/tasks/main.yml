@@ -1,0 +1,68 @@
+---
+
+# first role
+
+- name: update all packages
+  yum: name=* state=latest
+
+- name: install common packages
+  yum: name={{ item }} state=present
+  with_items:
+    - epel-release
+    - bind-utils
+    - bash-completion
+    - jwhois
+    - telnet
+    - ntpdate
+    - ntp
+    - vim-enhanced
+    - imake
+    - unzip
+    - bzip2
+    - tree
+    - strace
+    - ltrace
+    - lsof
+    - tcpdump
+    - traceroute
+    - nc
+    - dstat
+    - sysstat
+    - mlocate
+    - gcc
+    - gcc-c++
+    - perl-devel
+    - python-devel
+    - zlib-devel
+    - openssl
+    - openssl-devel
+    - patch
+    - git
+    - readline-devel
+    - libyaml-devel
+    - libxml2
+    - libxml2-devel
+    - libxslt
+    - libxslt-devel
+    - libcurl-devel
+    - mailx
+    - libselinux-python
+    - python-pip
+    - libffi-devel
+    - postgresql-devel
+    - the_silver_searcher
+    - postgresql
+    - sqlite-devel
+    - bzip2-devel
+    - hdf5-devel
+    - libpng-devel
+    - freetype-devel
+    - atlas-devel
+    - lapack-devel
+    - blas-devel
+    - rsync
+    - patch
+    - wget
+
+- name: enable CR repo
+  shell: yum-config-manager --enable cr
