@@ -5,10 +5,12 @@
 - name: update all packages
   yum: name=* state=latest
 
+- name: epel repository
+  yum: epel-release
+
 - name: install common packages
   yum: name={{ item }} state=present
   with_items:
-    - epel-release
     - bind-utils
     - bash-completion
     - whois
