@@ -5,4 +5,5 @@
   roles:
       - yum-package
       - selinux
+      - sudoers
       #- apache

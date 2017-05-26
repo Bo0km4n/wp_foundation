@@ -1,0 +1,11 @@
+---
+
+# sudoの設定
+
+- name: configure /etc/sudoers
+  copy: >
+    src=sudoers
+    dest=/etc/sudoers
+    owner=root
+    group=root
+    mode=440
