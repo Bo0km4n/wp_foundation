@@ -16,3 +16,9 @@
     src=logrotate-apache.conf
     dest=/etc/logrotate.d/httpd
 
+- name: modificate httpd.conf
+  replace: >
+      dest=/home/vagrant/sample.txt
+      regexp='Hello world\nsample'
+      replace='Hello world!!!!'
+

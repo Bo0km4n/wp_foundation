@@ -1,0 +1,29 @@
+---
+
+# MySQL5.7-clientインストール
+#
+# 1. MariaDBのLibraryをアンインストール
+# 2. yum経由で、MySQL5.6をインストール
+
+- name: uninstall MariaDB Library
+  yum: name=mariadb-libs state=absent
+
+#- name: register mysql repo
+#  shell: rpm -qa | grep mysql57-community-release
+#  register: register_mysql_repo
+#  failed_when: register_mysql_repo.rc not in [0, 1]
+#  changed_when: False
+
+- name: install the mysql rpm from a remote repo
+  yum: >
+    name=http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+    state=present
+#  when: register_mysql_repo.rc == 1
+
+- name: install MySQL-client
+  yum: >
+    name={{ item }}
+    state=present
+  with_items:
+    - mysql-community-client.x86_64
+    - mysql-community-devel.x86_64
