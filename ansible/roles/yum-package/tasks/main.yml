@@ -11,7 +11,7 @@
     - epel-release
     - bind-utils
     - bash-completion
-    - jwhois
+    - whois
     - telnet
     - ntpdate
     - ntp
@@ -47,14 +47,14 @@
     - libcurl-devel
     - mailx
     - libselinux-python
-    - python-pip
+      #- python-pip
     - libffi-devel
     - postgresql-devel
-    - the_silver_searcher
+      #- the_silver_searcher
     - postgresql
     - sqlite-devel
     - bzip2-devel
-    - hdf5-devel
+      #- hdf5-devel
     - libpng-devel
     - freetype-devel
     - atlas-devel
@@ -63,6 +63,7 @@
     - rsync
     - patch
     - wget
+    - yum-utils
 
 - name: enable CR repo
   shell: yum-config-manager --enable cr
