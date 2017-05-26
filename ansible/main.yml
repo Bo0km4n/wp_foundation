@@ -6,4 +6,5 @@
       - yum-package
       - selinux
       - sudoers
+      - chronyd-manager
       #- apache

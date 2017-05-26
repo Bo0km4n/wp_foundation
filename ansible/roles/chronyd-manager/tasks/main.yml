@@ -1,0 +1,30 @@
+---
+
+# Chrony設定
+#
+# sysclockを外部NTPサーバーと同期（初期化）
+#（オンプレ or 母艦ホストは、hwclockも同期させておくこと）
+# ntpd disable
+# chrony install & 設定
+# chrony 再起動
+
+- name: ntpdate
+  command: ntpdate ntp1.jst.mfeed.ad.jp
+
+- name: change Timezone
+  command: timedatectl set-timezone Asia/Tokyo
+
+- name: disable ntpd service
+  service: >
+    name=ntpd
+    enabled=no
+- name: install chrony
+  yum: name=chrony
+
+- name: configure chrony.conf
+  copy: >
+    src=chronyd-manager.conf
+    dest=/etc/chrony.conf
+    owner=root group=root
+- name: restart chronyd
+  service: name=chronyd state=restarted enabled=yes
