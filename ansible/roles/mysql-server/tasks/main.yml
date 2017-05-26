@@ -1,0 +1,44 @@
+---
+
+# MySQL5.6-serverインストール
+#
+# 1. MariaDBのLibraryをアンインストール
+# 2. yum経由で、MySQL5.6をインストール
+
+- name: uninstall MariaDB Library
+  yum: name=mariadb-libs state=absent
+
+- name: install MySQL-server
+  yum: >
+    name={{ item }}
+    state=present
+  with_items:
+    - mysql-community-client.x86_64
+    - mysql-community-devel.x86_64
+    - mysql-community-server.x86_64
+
+- name: configure my.cnf
+  copy: >
+    src=mysql.conf
+    dest=/etc/my.cnf
+    owner=root
+    group=root
+
+# データ用ディスク追加
+- name: mkdir /mnt/mysql/data
+  file: >
+    dest=/mnt/{{ item }}
+    owner=mysql
+    group=mysql
+    state=directory
+  with_items:
+    - mysql/data
+    - mysql/logs
+
+# MySQL初期化 & 起動
+
+- name: initialize mysql
+  command: mysql_install_db --datadir=/mnt/mysql/data/ --user=mysql
+
+- name: start mysqld
+  service: name=mysql state=started

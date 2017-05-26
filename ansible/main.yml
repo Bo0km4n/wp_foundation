@@ -9,3 +9,5 @@
       - chronyd-manager
       - apache
       - mysql-client
+      - mysql-server
+      - wordpress
