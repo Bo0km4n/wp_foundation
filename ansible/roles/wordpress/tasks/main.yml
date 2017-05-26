@@ -1,0 +1,27 @@
+---
+
+- name: install php packages
+  yum: name={{ item }} state=present
+  with_items:
+      - php
+      - php-devel
+      - php-pdo
+      - php-mysql
+      - php-mbstring
+      - php-mcrypt
+      - php-gd
+      - php-pear
+      - php-pear-DB
+      - php-pear-Auth-*
+      - php-pecl-apc-devel
+
+- name: mkdir /mnt/app wordpress
+  file: >
+    path=/mnt/app/{{ wordpress['servername'] }}
+    owner=apache
+    group=apache
+    state=directory
+
+- name: enable apache
+  service: name=httpd enabled=yes
+
