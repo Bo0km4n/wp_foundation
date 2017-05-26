@@ -1,8 +1,8 @@
 ---
 
-- hosts: vagrant
+- hosts: servers
   sudo: yes
   roles:
       - yum-package
       - selinux
-      - apache
+      #- apache
