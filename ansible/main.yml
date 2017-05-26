@@ -7,4 +7,4 @@
       - selinux
       - sudoers
       - chronyd-manager
-      #- apache
+      - apache
